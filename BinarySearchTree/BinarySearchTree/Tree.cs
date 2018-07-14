@@ -15,20 +15,23 @@ namespace BinarySearchTree
             root = null;
         }
 
-        public void Insert(int id)
+        public void Add(int id)
         {
             Node newNode = new Node();
             newNode.item = id;
             if (root == null)
+            {
                 root = newNode;
+            }
             else
             {
                 Node current = root;
                 Node parent;
+
                 while (true)
                 {
                     parent = current;
-                    if (id < current.item)
+                    if (newNode.item < current.item)
                     {
                         current = current.leftchild;
                         if (current == null)
@@ -48,40 +51,107 @@ namespace BinarySearchTree
                     }
                 }
             }
+
         }
 
-        public void Print()
+        public void Display()
         {
-            Print(root, 4);
+            Display(root, 0);
+            Console.WriteLine();
         }
-
-        public void Print(Node p, int padding)
+        public void Display(Node node, int level)
         {
-            if (p != null)
+            if (node == null)
             {
-                if (p.rightchild != null)
+                return;
+            }
+
+            Display(node.rightchild, level + 1);
+            Console.WriteLine();
+
+            for (int i = 0; i < level; i++)
+            {
+                Console.Write("    ");
+            }
+            Console.Write(node.item);
+
+            Display(node.leftchild, level + 1);
+        }
+
+        public void PreOrder()
+        {
+            PreOrder(root);
+            Console.WriteLine();
+        }
+        public void PreOrder(Node node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            Console.Write(node.item + " ");
+            PreOrder(node.leftchild);
+            PreOrder(node.rightchild);
+        }
+
+        public void InOrder()
+        {
+            InOrder(root);
+            Console.WriteLine();
+        }
+        public void InOrder(Node node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            InOrder(node.leftchild);
+            Console.Write(node.item + " ");
+            InOrder(node.rightchild);
+        }
+
+        public void PostOrder()
+        {
+            PostOrder(root);
+            Console.WriteLine();
+        }
+        public void PostOrder(Node node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            PostOrder(node.leftchild);
+            PostOrder(node.rightchild);
+            Console.Write(node.item + " ");
+        }
+
+        public void LevelOrder()
+        {
+            if (root == null)
+            {
+                Console.WriteLine("Tree is empty");
+                return;
+            }
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+
+            Node node;
+            while (queue.Count != 0)
+            {
+                node = queue.Dequeue();
+                Console.Write(node.item + " ");
+                if (node.leftchild != null)
                 {
-                    Print(p.rightchild, padding + 4);
+                    queue.Enqueue(node.leftchild);
                 }
-                if (padding > 0)
+                if (node.rightchild != null)
                 {
-                    Console.Write(" ".PadLeft(padding));
-                }
-                if (p.rightchild != null)
-                {
-                    Console.Write("/\n");
-                    Console.Write(" ".PadLeft(padding));
-                }
-                Console.Write(p.item.ToString() + "\n ");
-                if (p.leftchild != null)
-                {
-                    Console.Write(" ".PadLeft(padding) + "\\\n");
-                    Print(p.leftchild, padding + 4);
+                    queue.Enqueue(node.rightchild);
                 }
             }
         }
+
     }
-
-
 }
 

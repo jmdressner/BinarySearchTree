@@ -11,15 +11,32 @@ namespace BinarySearchTree
         static void Main(string[] args)
         {
             Tree myTree = new Tree();
-            myTree.Insert(100);
-            myTree.Insert(82);
-            myTree.Insert(78);
-            myTree.Insert(93);
-            myTree.Insert(116);
-            myTree.Insert(105);
-            myTree.Insert(123);
-            myTree.Print();
+            myTree.Add(100);
+            myTree.Add(82);
+            myTree.Add(78);
+            myTree.Add(93);
+            myTree.Add(116);
+            myTree.Add(105);
+            myTree.Add(123);
+            myTree.Display();
             Console.ReadLine();
+
+            Console.WriteLine("Pre-order: ");
+            myTree.PreOrder();
+            Console.WriteLine("");
+
+            Console.WriteLine("In-order: ");
+            myTree.InOrder();
+            Console.WriteLine();
+
+            Console.WriteLine("Post-order: ");
+            myTree.PostOrder();
+            Console.WriteLine();
+
+            Console.WriteLine("Level order: ");
+            myTree.LevelOrder();
+            Console.WriteLine();
+
         }
     }
 }
