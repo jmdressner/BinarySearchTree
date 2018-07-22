@@ -37,6 +37,12 @@ namespace BinarySearchTree
             myTree.LevelOrder();
             Console.WriteLine();
 
+            Console.WriteLine();
+            myTree.Search(93);
+
+            myTree.Search(100);
+
+            myTree.Search(116);
         }
     }
 }

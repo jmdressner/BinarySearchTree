@@ -13,6 +13,7 @@ namespace BinarySearchTree
         public Tree()
         {
             root = null;
+            
         }
 
         public void Add(int id)
@@ -150,6 +151,61 @@ namespace BinarySearchTree
                     queue.Enqueue(node.rightchild);
                 }
             }
+        }
+
+        public void Search(int id)
+        {
+            Search(root, id);
+            Console.WriteLine(); ;
+        }
+
+        public void Search(Node node, int id)
+        {
+            if (root == null)
+            {
+                Console.WriteLine("This binary search tree is empty.");
+            }
+            else if (root.item == id)
+            {
+                Console.WriteLine(id + " is the root node of this binary search tree.");
+            }
+            else
+            {
+                Console.WriteLine(id +" is not the root node. Checking children:");
+
+                if (node.leftchild != null && id == node.leftchild.item)
+                {
+                    Console.WriteLine(id + " is found in the left child.");
+                }
+                else if (node.leftchild != null && id == node.rightchild.item)
+                {
+                    Console.WriteLine(id + " is found in the right child.");
+                }
+                else
+                {
+                    if (node.leftchild.leftchild != null && id == node.leftchild.leftchild.item)
+                    {
+                        Console.WriteLine(id + " is found in the left childs, left child.");
+                    }
+                    else if (node.leftchild.rightchild != null && id == node.leftchild.rightchild.item)
+                    {
+                        Console.WriteLine(id + " is found in the left childs, right child.");
+                    }
+                    else if (node.rightchild.leftchild != null && id == node.rightchild.leftchild.item)
+                    {
+                        Console.WriteLine(id + " is found in the right childs, left child.");
+                    }
+                    else if (node.rightchild.rightchild != null && id == node.rightchild.rightchild.item)
+                    {
+                        Console.WriteLine(id + " is found in the right childs, right child.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(id + " is not in this binary search tree.");
+                    }
+                }
+            }
+         
         }
 
     }
